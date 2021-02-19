@@ -58,13 +58,16 @@ class Person {
     return `${this.name}, ${this.age}`;
   }
 }
-const personOne = new Person('Cynthia', 29);
+const personOne = new Person({
+  name: 'Cynthia',
+  age: 29,
+});
 //console.log(personOne.toString());
-personOne.eat('Tacos');
-console.log(personOne.stomach);
-personOne.poop();
-console.log(personOne.stomach);
-personOne.toString();
+// personOne.eat('Tacos');
+// console.log(personOne.stomach);
+// personOne.poop();
+// console.log(personOne.stomach);
+// personOne.toString();
 
 /*
   TASK 2
@@ -101,12 +104,15 @@ class Car {
     }
   }
 }
-const Mercedes = new Car('AMG GT', 8);
-Mercedes.fill(3);
-console.log(Mercedes.tank);
-console.log(Mercedes.drive(30));
-console.log(Mercedes.odometer);
-console.log(Mercedes.tank);
+const Mercedes = new Car({
+  model: 'AMG GT',
+  milesPerGallon: 8,
+});
+// Mercedes.fill(3);
+// console.log(Mercedes.tank);
+// console.log(Mercedes.drive(30));
+// console.log(Mercedes.odometer);
+// console.log(Mercedes.tank);
 
 /*
   TASK 3
@@ -173,8 +179,8 @@ const instructorBrain = new Instructor({
   favLanguage: 'Python',
   catchPhrase: 'That\'s so Ronald!',
 });
-console.log(instructorBrain.catchPhrase);
-console.log(instructorBrain.demo());
+// console.log(instructorBrain.catchPhrase);
+// console.log(instructorBrain.demo());
 
 /*
   TASK 5
@@ -216,9 +222,9 @@ const studentMax = new Student({
   className: 'WebPT 20',
   favSubjects: ['HTML', 'CSS', 'JS'],
 });
-console.log(studentMax.favSubjects);
-console.log(studentMax.PRAssignment());
-console.log(studentMax.sprintChallenge());
+// console.log(studentMax.favSubjects);
+// console.log(studentMax.PRAssignment());
+// console.log(studentMax.sprintChallenge());
 
 /*
   TASK 6
@@ -233,9 +239,31 @@ console.log(studentMax.sprintChallenge());
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
-
+class ProjectManager extends Instructor {
+  constructor(projectManagerAttrs) {
+    super(projectManagerAttrs);
+    this.gradClassName = projectManagerAttrs.gradClassName;
+    this.favInstructor = projectManagerAttrs.favInstructor;
+  }
+  standUp(slackChannel) {
+    return `${this.name} announces to ${slackChannel}, @channel standy times!`;
+  }
+  debugsCode(student, subject) {
+    return `${this.name} debugs ${student.name}'s code on ${subject}`;
+  }
 }
+const projectManagerJane = new ProjectManager({
+  name: 'Jane',
+  age: 40,
+  location: 'Walnut Creek',
+  specialty: 'React',
+  favLanguage: 'JS',
+  catchPhrase: 'Que sera, sera',
+  gradClassName: 'Web30',
+  favInstructor: 'Pace',
+});
+// console.log(projectManagerJane.specialty);
+// console.log(projectManagerJane.debugsCode());
 /*
   STRETCH PROBLEM (no tests!)
     - Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
