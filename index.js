@@ -101,14 +101,12 @@ class Car {
     }
   }
 }
-
 const Mercedes = new Car('AMG GT', 8);
 Mercedes.fill(3);
 console.log(Mercedes.tank);
 console.log(Mercedes.drive(30));
 console.log(Mercedes.odometer);
 console.log(Mercedes.tank);
-
 
 /*
   TASK 3
@@ -123,8 +121,21 @@ console.log(Mercedes.tank);
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
-
+  constructor(attrs) {
+    this.name = attrs.name;
+    this.age = attrs.age;
+    this.location = attrs.location;
+  }
+  speak() {
+    return `Hello my name is ${this.name}, I am from ${this.location}.`;
+  }
 }
+const lambdasianCynthia = new Lambdasian({
+  name: 'Cynthia',
+  age: 29,
+  location: 'Concord',
+});
+lambdasianCynthia.speak();
 
 /*
   TASK 4
@@ -140,9 +151,31 @@ class Lambdasian {
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
-
+class Instructor extends Lambdasian {
+  constructor(attrs) {
+    super(attrs);
+    this.specialty = attrs.specialty;
+    this.favLanguage = attrs.favLanguage;
+    this.catchPhrase = attrs.catchPhrase;
+  }
+  demo(subject) {
+    return `Today we are learning about ${subject}.`
+  }
+  grade(student, subject) {
+    return `${student.name} recieves a perfect score on ${subject}.`;
+  }
 }
+const instructorBrain = new Instructor({
+  name: 'Brian',
+  age: 40,
+  location: 'Walnut Creek',
+  specialty: 'JavaScript',
+  favLanguage: 'Python',
+  catchPhrase: 'That\'s so Ronald!',
+});
+console.log(instructorBrain.catchPhrase);
+console.log(instructorBrain.demo());
+
 /*
   TASK 5
     - Write a Student class extending Lambdasian.
