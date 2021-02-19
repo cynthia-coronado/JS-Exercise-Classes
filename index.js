@@ -152,11 +152,11 @@ lambdasianCynthia.speak();
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
 class Instructor extends Lambdasian {
-  constructor(attrs) {
-    super(attrs);
-    this.specialty = attrs.specialty;
-    this.favLanguage = attrs.favLanguage;
-    this.catchPhrase = attrs.catchPhrase;
+  constructor(instructorAttrs) {
+    super(instructorAttrs);
+    this.specialty = instructorAttrs.specialty;
+    this.favLanguage = instructorAttrs.favLanguage;
+    this.catchPhrase = instructorAttrs.catchPhrase;
   }
   demo(subject) {
     return `Today we are learning about ${subject}.`
@@ -191,9 +191,34 @@ console.log(instructorBrain.demo());
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
-
+class Student extends Lambdasian {
+  constructor(studentAttrs) {
+    super(studentAttrs);
+    this.previousBackground = studentAttrs.previousBackground;
+    this.className = studentAttrs.className;
+    this.favSubjects = studentAttrs.favSubjects;
+  }
+  listSubjects() {
+    return `Loving ${this.favSubjects}!`;
+  }
+  PRAssignment(subject) {
+    return `${this.name} has submitted a PR for ${subject}`;
+  }
+  sprintChallenge(subject) {
+    return `${this.name} has begun sprint challenge on ${subject}`;
+  }
 }
+const studentMax = new Student({
+  name: 'Max',
+  age: 35,
+  location: 'Concord',
+  previousBackground: 'Affiliate',
+  className: 'WebPT 20',
+  favSubjects: ['HTML', 'CSS', 'JS'],
+});
+console.log(studentMax.favSubjects);
+console.log(studentMax.PRAssignment());
+console.log(studentMax.sprintChallenge());
 
 /*
   TASK 6
